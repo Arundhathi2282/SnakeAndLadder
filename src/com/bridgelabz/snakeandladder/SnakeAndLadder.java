@@ -7,7 +7,7 @@ public class SnakeAndLadder {
 	 * Checking for an option like NoPlay, Ladder and Snake
 	 *  Moving the player position according to the option
 	 */
-	public void CheckingOfAnOption() {
+	public void checkingOfAnOption() {
 		int playerPosition = 0;
 		Random random = new Random();
 		int randomCheck = random.nextInt(3);
@@ -33,6 +33,6 @@ public class SnakeAndLadder {
 	public static void main(String args[]) {
 		System.out.println("Welcome to Snake and Ladder..!");
 		SnakeAndLadder object = new SnakeAndLadder();
-		object.CheckingOfAnOption();
+		object.checkingOfAnOption();
 	}
 }
