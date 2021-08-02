@@ -8,7 +8,7 @@ public class SnakeAndLadder {
 	 * Moving the player position according to the option 
 	 * Reporting the number of times the dice was played to win the game and also the position after every die roll
 	 */
-	public void CheckingOfAnOption() {
+	public void checkingOfAnOption() {
 		int playerPosition = 0;
 		Random random = new Random();
 		int count = 1;
@@ -44,6 +44,6 @@ public class SnakeAndLadder {
 	public static void main(String args[]) {
 		System.out.println("Welcome to Snake and Ladder..!");
 		SnakeAndLadder object = new SnakeAndLadder();
-		object.CheckingOfAnOption();
+		object.checkingOfAnOption();
 	}
 }
