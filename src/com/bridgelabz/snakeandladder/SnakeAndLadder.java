@@ -8,7 +8,7 @@ public class SnakeAndLadder {
 	 * Moving the player position according to the option
 	 * Repeating the loop till player reaches to 100th position
 	 */
-	public void CheckingOfAnOption() {
+	public void checkingOfAnOption() {
 		int playerPosition = 0;
 		Random random = new Random();
 		while (true) {
@@ -38,6 +38,6 @@ public class SnakeAndLadder {
 	public static void main(String args[]) {
 		System.out.println("Welcome to Snake and Ladder..!");
 		SnakeAndLadder object = new SnakeAndLadder();
-		object.CheckingOfAnOption();
+		object.checkingOfAnOption();
 	}
 }
