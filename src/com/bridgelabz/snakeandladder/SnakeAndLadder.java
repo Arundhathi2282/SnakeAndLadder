@@ -6,12 +6,13 @@ public class SnakeAndLadder {
 	/**
 	 * Checking for an option like NoPlay, Ladder and Snake 
 	 * Moving the player position according to the option 
-	 * Repeating the loop till player reaches to exact winning position
+	 * Reporting the number of times the dice was played to win the game and also the position after every die roll
 	 */
 	public void CheckingOfAnOption() {
 		int playerPosition = 0;
 		Random random = new Random();
-		while (true) {
+		int count = 1;
+		while (count > 0) {
 			int randomCheck = random.nextInt(3);
 			int randomNumber = 1 + random.nextInt(6);
 			switch (randomCheck) {
@@ -34,7 +35,10 @@ public class SnakeAndLadder {
 					break;
 				}
 			}
+			System.out.println("The position of the player after "+count+" roll is : " +playerPosition);
+			count += 1;
 		}
+		System.out.println("Total count is : "+count);
 	}
 
 	public static void main(String args[]) {
