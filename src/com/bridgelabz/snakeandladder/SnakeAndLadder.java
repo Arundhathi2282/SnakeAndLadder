@@ -1,63 +1,124 @@
 package com.bridgelabz.snakeandladder;
-
 import java.util.Random;
 
 public class SnakeAndLadder {
-	Random random = new Random();
+	static Random random = new Random();
+	static int playerOnePosition = 0, playerTwoPosition = 0;
 
 	/**
-	 * Checking for an option like NoPlay, Ladder and Snake Moving the player
-	 * position according to the option Reporting the number of times the dice was
-	 * played to win the game and also the position after every die roll
+	 * Rolling the dice to get a number between 1 to 6
+	 * 
+	 * @return
 	 */
-	public void checkingOfAnOption() {
-		int playerPosition = 0;
-		int count = 1;
-		while (count > 0) {
-			int randomCheck = random.nextInt(3);
-			int randomNumber = 1 + random.nextInt(6);
-			switch (randomCheck) {
-			case 1:
-				playerPosition += randomNumber;
-				break;
-			case 2:
-				playerPosition -= randomNumber;
-				break;
-			default:
-				playerPosition = playerPosition;
-			}
-			if (playerPosition < 0) {
-				playerPosition = 0;
-			} else if (playerPosition > 100) {
-				playerPosition -= randomNumber;
-			} else {
-				if (playerPosition == 100) {
-					System.out.println("The player has won the game by reaching winning position");
-					break;
-				}
-			}
-			System.out.println("The position of the player after " + count + " roll is : " + playerPosition);
-			count += 1;
-		}
-		System.out.println("Total count is : " + count);
+	private static int rollDie() {
+		int randomNumber = 1 + random.nextInt(6);
+		return randomNumber;
 	}
 
-	public void choosePlayer() {
-		int toss = random.nextInt(2);
-		switch (toss) {
-		case 1:
-			System.out.println("Player1 has won the toss");
-			checkingOfAnOption();
-			break;
-		default:
-			System.out.println("Player2 has won the toss");
-			checkingOfAnOption();
+	/**
+	 * Getting a random number between 0 to 2 to choose an option like No play,
+	 * Ladder and Snake
+	 * 
+	 * @return
+	 */
+	private static int randomOption() {
+		int randomOption = random.nextInt(3);
+		return randomOption;
+	}
+
+	/**
+	 * This method will give you the position of the first player
+	 */
+	public static void playerOneTurn() {
+		int playerOneOption = randomOption();
+		if (playerOneOption == 1) {
+			playerOnePosition += rollDie();
+			System.out.println("Player one position : " + playerOnePosition);
+		} else if (playerOneOption == 2) {
+			playerOnePosition -= rollDie();
+			System.out.println("Player one Position : " + playerOnePosition);
+		} else {
+			playerOnePosition = playerOnePosition;
+			System.out.println("Player one Position : " + playerOnePosition);
 		}
 	}
 
+	/**
+	 * This method will give you the position of the second player
+	 */
+	public static void playerTwoTurn() {
+		int playerTwoOption = randomOption();
+		if (playerTwoOption == 1) {
+			playerTwoPosition += rollDie();
+			System.out.println("Player two Position : " + playerTwoPosition);
+		} else if (playerTwoOption == 2) {
+			playerTwoPosition -= rollDie();
+			System.out.println("Player two Position : " + playerTwoPosition);
+		} else {
+			playerTwoPosition = playerTwoPosition;
+			System.out.println("Player two Position : " + playerTwoPosition);
+		}
+	}
+
+	/**
+	 * This the main method of the Snake and Ladder Program
+	 * 
+	 * @param args
+	 */
 	public static void main(String args[]) {
-		System.out.println("Welcome to Snake and Ladder..!");
-		SnakeAndLadder object = new SnakeAndLadder();
-		object.choosePlayer();
+		System.out.println("Welcome to the Snake and Ladder");
+		while (true) {
+			playerOneTurn();
+			if (playerOneWinCheck() == true) {
+				break;
+			}
+			playerTwoTurn();
+			if (playerTwoWinCheck() == true) {
+				break;
+			}
+		}
+	}
+
+	/**
+	 * This method will checks the winning position of the player two
+	 * 
+	 * @return
+	 */
+	private static boolean playerTwoWinCheck() {
+		if (playerTwoPosition < 0) {
+			playerTwoPosition = 0;
+			return false;
+		} else if (playerTwoPosition > 100) {
+			playerTwoPosition -= rollDie();
+			return false;
+		} else {
+			if (playerTwoPosition == 100) {
+				System.out.println("The player two has won the game by reaching winning position");
+				return true;
+			}
+			return false;
+		}
+
+	}
+
+	/**
+	 * This method will checks the winning position of the player one
+	 * 
+	 * @return
+	 */
+	private static boolean playerOneWinCheck() {
+		if (playerOnePosition < 0) {
+			playerOnePosition = 0;
+			return false;
+		} else if (playerOnePosition > 100) {
+			playerOnePosition -= rollDie();
+			return false;
+		} else {
+			if (playerOnePosition == 100) {
+				System.out.println("The player one has won the game by reaching winning position");
+				return true;
+			}
+			return false;
+		}
 	}
 }
